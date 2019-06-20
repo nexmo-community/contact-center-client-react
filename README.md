@@ -25,3 +25,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
+
+### Build Your Own Contact Center
+
+This is one of the components required for Nexmo's ["Contact Center Use Case"](https://developer.nexmo.com/client-sdk/in-app-voice/contact-center-overview).
+
+
+<a href="https://heroku.com/deploy?template=https://github.com/nexmo-community/contact-center-react" target="_blank">
+  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
+</a>

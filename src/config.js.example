@@ -1,3 +1,0 @@
-export const config = { 
-    USER_JWT: 'json.web.token'
-};

@@ -1,27 +1,39 @@
-This is a simple app produced to [make](https://developer.nexmo.com/client-sdk/in-app-voice/getting-started/make-phone-call/javascript) and [receive](https://developer.nexmo.com/client-sdk/in-app-voice/getting-started/receive-phone-call/javascript) calls from JavaScript/React client.
+# Luke's BFF Demo
 
-## Before You Begin
+- [Luke's BFF Demo](#lukes-bff-demo)
+  - [Run Locally](#run-locally)
+  - [Run Production](#run-production)
+  - [Deploy Application](#deploy-application)
 
-### Get a Nexmo Account
+---
 
-Make sure you have a Nexmo account. If you don't yet [sign up](https://dashboard.nexmo.com/) for free to get started!
+## Run Locally
 
-### Setup up an Application
+To run locally, run this command.
 
-Follow our [guide to getting started using the CLI](https://developer.nexmo.com/tutorials/client-sdk-generate-test-credentials) and to create an application, if you don't already have one and generate some test credentials.
+```bash
+npm run dev
+``` 
 
-### Configure the React Demo Application
+This will start both the client and server. You can access the app at [localhost:3000][4]
 
-Copy `config.js.example` to create `config.js` and update the `USER_JWT` with your user's JWT, or the JWT you have created in our guide to getting started. This is a demo application and auth has only been stubbed.
+## Run Production
 
-## Available Scripts
+To run production, run this command.
 
-In the project directory, you can run:
+```bash
+PORT=3000 npm run prod
+``` 
 
-### `npm start`
+This will build the client and run (hosting the client) the server. You can access the app at [localhost:3000][4]
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Deploy Application
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+You can deploy to your own Heroku instance using this button.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)][2]
+
+---
+
+[2]: <https://heroku.com/deploy>
+[4]: <http://localhost:3000>

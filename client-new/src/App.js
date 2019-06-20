@@ -23,13 +23,19 @@ class App extends Component {
 
 const auth = {
   isAuthenticated: false,
-  authenticate(cb) {
+  authenticate(user, callback) {
+    const key = '6821c80f08b67a3f0dd23ec7563fb7d0ef306a6dcb58ea7760a5a4d8ae6525ce';
+
+    fetch(`/api/jwt/${key}/${user}`)
+      .then(res => res.json())
+
     this.isAuthenticated = true;
-    setTimeout(cb, 100);
+    callback('jwt');
   },
-  signout(cb) {
+  signout(callback) {
+    this.user = null;
     this.isAuthenticated = false;
-    setTimeout(cb, 100);
+    callback();
   }
 };
 
@@ -91,9 +97,9 @@ function PrivateRoute({ component: Component, ...rest }) {
 class Login extends Component {
   state = { redirectToReferrer: false };
 
-  login = () => {
-    auth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
+  login = (user) => {
+    auth.authenticate(user, (jwt) => {
+      this.setState({ jwt: jwt, redirectToReferrer: true });
     });
   };
 
@@ -107,10 +113,10 @@ class Login extends Component {
       <Card style={{ margin: "20vh auto 0 auto", width: '18rem' }} className="text-center">
         <Card.Img variant="top" src="https://avatars2.githubusercontent.com/u/551057?s=286&v=4" />
         <Card.Body>
-          <Card.Title>Client SDK</Card.Title>
-          <Card.Text>Please Log in</Card.Text>
+          <Card.Text>Please select a user</Card.Text>
           <Form>
-            <Button variant="primary" size="lg" block onClick={this.login}>Log in</Button>
+            <Button variant="primary" size="lg" block onClick={() => this.login('jane')}>Log in as Jane</Button>
+            <Button variant="primary" size="lg" block onClick={() => this.login('joe')}>Log in as Joe</Button>
           </Form>
         </Card.Body>
       </Card>

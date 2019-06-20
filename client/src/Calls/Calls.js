@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import nexmoClient from 'nexmo-client';
-import { config } from '../config';
 
 class Calls extends Component {
   state = {
@@ -26,7 +25,7 @@ class Calls extends Component {
 
   componentWillMount() {
     let nexmo = new nexmoClient();
-    nexmo.login(config.USER_JWT)
+    nexmo.login(this.props.jwt)
       .then(application => {
         this.setState({
           application: application

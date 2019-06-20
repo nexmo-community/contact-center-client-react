@@ -121,8 +121,8 @@ class Login extends Component {
         <Card.Body>
           <Card.Text>Please select a user</Card.Text>
           <Form>
-            <Button variant="primary" size="lg" block onClick={() => this.login('jane')}>Log in as Jane</Button>
-            <Button variant="primary" size="lg" block onClick={() => this.login('joe')}>Log in as Joe</Button>
+            <Button variant="primary" size="lg" block onClick={() => this.login('Jane')}>Log in as Jane</Button>
+            <Button variant="primary" size="lg" block onClick={() => this.login('Joe')}>Log in as Joe</Button>
           </Form>
         </Card.Body>
       </Card>

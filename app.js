@@ -3,6 +3,7 @@ const port = process.env.PORT || 3001;
 const express = require('express');
 const app = express();
 const axios = require('axios');
+require('dotenv').config();
 
 app.get('/api/jwt/:key/:user', (req, res) => {
   const { SERVER_URL, SERVER_KEY } = process.env;

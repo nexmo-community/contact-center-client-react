@@ -24,9 +24,7 @@ class App extends Component {
 const auth = {
   isAuthenticated: false,
   authenticate(user, callback) {
-    const key = '6821c80f08b67a3f0dd23ec7563fb7d0ef306a6dcb58ea7760a5a4d8ae6525ce';
-
-    fetch(`/api/jwt/${key}/${user}`)
+    fetch(`/api/jwt/${user}`)
       .then(res => res.json())
       .then(
         (result) => {

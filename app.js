@@ -5,15 +5,11 @@ const app = express();
 const axios = require('axios');
 require('dotenv').config();
 
-app.get('/api/jwt/:key/:user', (req, res) => {
+app.get('/api/jwt/:user', (req, res) => {
   const { SERVER_URL, SERVER_KEY } = process.env;
 
-  if (req.params.key !== SERVER_KEY) {
-    res.sendStatus(403);
-  }
-
   axios.post(`${SERVER_URL}/api/jwt`, {
-    mobile_api_key: req.params.key,
+    mobile_api_key: SERVER_KEY,
     user_name: req.params.user
   })
   .then(function (jwtResponse) {

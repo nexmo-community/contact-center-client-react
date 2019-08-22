@@ -10,7 +10,7 @@ To get started, you can use this app to [make](https://developer.nexmo.com/clien
 
 - [Getting Started](#getting-started)
   - [Start Locally](#start-locally)
-    - [Nexmo Account](#nexmo-account)
+    - [Configure Server](#configure-server)
     - [Environment File](#environment-file)
     - [Start it!](#start-it)
   - [Deploy with Heroku](#deploy-with-heroku)
@@ -22,9 +22,9 @@ To get started, you can use this app to [make](https://developer.nexmo.com/clien
 
 ### Start Locally
 
-#### Nexmo Account
+#### Configure Server
 
-To be able to use this application you'll need to [Sign up for a Nexmo account][signup].
+Configure a [server side application](https://github.com/nexmo-community/contact-center-server-node) for the contact center. Once you have followed the steps you'll have the `SERVER_URL` and the `SERVER_KEY` of the contact center server.
 
 #### Environment File
 

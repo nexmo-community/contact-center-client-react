@@ -39,6 +39,14 @@ SERVER_KEY=key-generated-by-contact-center-server-here
 
 #### Start it!
 
+Before you start it for the first time, run this to install our dependencies.
+
+```js
+npm install --prefix ./client && npm install
+```
+
+Once installed, you can now run it locally.
+
 ```js
 npm run dev
 ```

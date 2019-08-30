@@ -1,8 +1,11 @@
 {
-  "name": "bff-talk-demo",
+  "name": "contact-center-client-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "Build Your Own Contact Center (React client). This is one of the components required for Nexmo's Contact Center Use Case. You can run it locally or deploy it to Heroku as described below.",
+  "author": "Luke Oliff",
+  "license": "MIT",
   "main": "app.js",
+  "private": true,
   "scripts": {
     "dev:client": "cd client/ && npm start",
     "dev:server": "node app.js",
@@ -10,8 +13,6 @@
     "prod": "node app.js",
     "heroku-postbuild": "cd client && npm i && npm run build"
   },
-  "author": "Luke Oliff",
-  "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
     "dotenv": "^8.0.0",

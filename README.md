@@ -26,6 +26,10 @@ To get started, you can use this app to [make](https://developer.nexmo.com/clien
 
 Configure a [server side application](https://github.com/nexmo-community/contact-center-server-node) for the contact center. Once you have followed the steps you'll have the `SERVER_URL` and the `SERVER_KEY` of the contact center server.
 
+If you're running the node server locally, you'll likely be running it through ngrok so you can make and receive calls. So your `SERVER_URL` will look like `http://03abc21.ngrok.io`. Otherwise, if you're running it on Heroku, your `SERVER_URL` will look like `http://yourappname.herokuapp.com`.
+
+Once the server is running, you can browse to the `SDK Integration` page and look for the *MOBILE_API_KEY* which will become your `SERVER_KEY`.
+
 #### Environment File
 
 Create an environment file by copying the example file, `.example.env` to `.env`, and editing it with your own configuration. Omitting environment variables will cause the application to use default values. As Nexmo needs to be able to access the server to provide NCCOs, default values will prevent you from making calls.

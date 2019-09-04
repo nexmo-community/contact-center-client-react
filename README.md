@@ -8,15 +8,17 @@ To get started, you can use this app to [make](https://developer.nexmo.com/clien
 
 **Table of Contents**
 
-- [Getting Started](#getting-started)
-  - [Start Locally](#start-locally)
-    - [Configure Server](#configure-server)
-    - [Environment File](#environment-file)
-    - [Start it!](#start-it)
-  - [Deploy with Heroku](#deploy-with-heroku)
-- [Code of Conduct](#code-of-conduct)
-- [Contributing](#contributing)
-- [License](#license)
+- [Build Your Own Contact Center (React client)](#build-your-own-contact-center-react-client)
+  - [Getting Started](#getting-started)
+    - [Start Locally](#start-locally)
+      - [Configure Server](#configure-server)
+      - [Configure Client Settings](#configure-client-settings)
+      - [Environment File](#environment-file)
+      - [Start it!](#start-it)
+    - [Deploy with Heroku](#deploy-with-heroku)
+  - [Code of Conduct](#code-of-conduct)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Getting Started
 
@@ -30,9 +32,21 @@ If you're running the node server locally, you'll likely be running it through n
 
 Once the server is running, you can browse to the `SDK Integration` page and look for the *MOBILE_API_KEY* which will become your `SERVER_KEY`.
 
+#### Configure Client Settings
+
+This app is intended to be configured to only call out to a fixed number. Set your fixed number by creating a config file inside the `client/src` directory, by copying the example config file, `config.json.example` to `config.json`.
+
+If you choose to be able to dial numbers from inside your own application, it is strongly recommended to do so behind a robust authentication implementation. Otherwise, this is open to abuse.
+
+```
+{
+    "CALLEE_NUMBER": "+447500000000"
+}
+```
+
 #### Environment File
 
-Create an environment file by copying the example file, `.example.env` to `.env`, and editing it with your own configuration. Omitting environment variables will cause the application to use default values. As Nexmo needs to be able to access the server to provide NCCOs, default values will prevent you from making calls.
+Create an environment file by copying the example environment file, `.example.env` to `.env`, and editing it with your own configuration. Omitting environment variables will cause the application to use default values. As Nexmo needs to be able to access the server to provide NCCOs, default values will prevent you from making calls.
 
 You'll need the `SERVER_URL` of the contact center server you wish to use and the `SERVER_KEY` from the SDK Integration page of your contact center server.
 

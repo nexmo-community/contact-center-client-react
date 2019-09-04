@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import nexmoClient from 'nexmo-client';
+import CONFIG from '../config.json';
 
 class Calls extends Component {
   state = {
@@ -45,7 +46,7 @@ class Calls extends Component {
 
   makeCall = () => {
     if (this.state.application) {
-      this.state.application.callPhone("447508741510").catch(this.genericCallError);
+      this.state.application.callPhone(CONFIG.CALLEE_NUMBER).catch(this.genericCallError);
     }
   }
 

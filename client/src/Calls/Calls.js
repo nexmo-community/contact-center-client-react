@@ -46,7 +46,7 @@ class Calls extends Component {
 
   makeCall = () => {
     if (this.state.application) {
-      this.state.application.callPhone(CONFIG.CALLEE_NUMBER).catch(this.genericCallError);
+      this.state.application.callServer(CONFIG.CALLEE_NUMBER).catch(this.genericCallError);
     }
   }
 

@@ -6,6 +6,7 @@ import CONFIG from '../config.json';
 class Calls extends Component {
   state = {
     application: null,
+    conversation: null,
     call: null,
     direction: null, 
     message: "Waiting for a call",
@@ -16,16 +17,18 @@ class Calls extends Component {
     started: { message: "Call started", connected: false },
     ringing: { message: "Call ringing", connected: true },
     answered: { message: "Call answered", connected: true },
-    completed: { message: "Call completed", connected: false, direction: null, call: null },
-    busy: { message: "Call busy", connected: false, direction: null, call: null },
-    timeout: { message: "Call timed out", connected: false, direction: null, call: null },
-    unanswered: { message: "Call not answered", connected: false, direction: null, call: null },
-    rejected: { message: "Call rejected", connected: false, direction: null, call: null },
-    failed: { message: "Call failed", connected: false, direction: null, call: null }
+    completed: { message: "Call completed", connected: false, direction: null },
+    busy: { message: "Call busy", connected: false, direction: null },
+    timeout: { message: "Call timed out", connected: false, direction: null },
+    unanswered: { message: "Call not answered", connected: false, direction: null },
+    rejected: { message: "Call rejected", connected: false, direction: null },
+    failed: { message: "Call failed", connected: false, direction: null }
   };
 
   componentWillMount() {
-    let nexmo = new nexmoClient();
+    let nexmo = new nexmoClient({
+      debug: true
+    });
     nexmo.login(this.props.jwt)
       .then(application => {
         this.setState({
@@ -34,14 +37,40 @@ class Calls extends Component {
         application.on("member:call", (member, call) => {
           this.setState({
             direction: call.direction,
-            call: call
+            call: call,
+            conversation: call.conversation
           });
         })
         application.on("call:status:changed", call => {
           this.setState(this.callStatus[call.status])
         })
+        application.on('member:joined', (member, event) => {
+          application.getConversation(event.cid).then((conversation) => {
+            if (this.state.conversation) {
+              this.closeConversation();
+            }
+            this.setState({
+              conversation: member.conversation
+            })
+
+            this.state.conversation.on('member:left', this.state.conversation.id, (from, event) => {
+              if (this.state.conversation.me.id === from.id) {
+                this.closeConversation();
+              }
+            });
+          })
+        })
       })
       .catch(console.log);
+  }
+
+  closeConversation = () => {
+    if (this.state.conversation) {
+      this.state.conversation.releaseGroup(this.state.conversation.id);
+      this.setState({
+        conversation: null
+      });
+    }
   }
 
   makeCall = () => {
@@ -59,12 +88,19 @@ class Calls extends Component {
   rejectCall = () => {
     if (this.state.call) {
       this.state.call.reject().catch(this.genericCallError);
+      this.setState({
+        call: null
+      })
     }
   }
 
   hangUp = () => {
     if (this.state.call) {
       this.state.call.hangUp().catch(this.genericCallError);
+      this.setState({
+        call: null
+      })
+      this.closeConversation();
     }
   }
 
